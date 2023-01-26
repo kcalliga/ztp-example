@@ -41,13 +41,12 @@ spec:
                 type: ethernet
                 state: up
                 macAddress: "52:54:00:9a:d2:5b"
-                address:
-            - ipv4:
-                address:
-                - ip: 198.102.28.30
-                  prefix-length: 29
-              dhcp: false
-              enabled: true
+                ipv4:
+                  address:
+                  - ip: 198.102.28.30
+                    prefix-length: 29
+                dhcp: false
+                enabled: true
             dns-resolver:
               config:
                 search:
