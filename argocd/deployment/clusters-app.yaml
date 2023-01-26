@@ -14,7 +14,7 @@ spec:
     namespace: clusters-sub
   project: ztp-app-project
   source:
-    path: ztp/gitops-subscriptions/argocd/example/siteconfig
+    path: argocd/example/siteconfig
     repoURL: https://github.com/kcalliga/ztp-example/
     targetRevision: master
     # uncomment the below plugin if you will be adding the plugin binaries in the same repo->dir where
