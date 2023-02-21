@@ -1,91 +1,61 @@
-# example-node1-bmh-secret & assisted-deployment-pull-secret need to be created under same namespace example-sno
----
 apiVersion: ran.openshift.io/v1
 kind: SiteConfig
 metadata:
   name: "example-sno"
   namespace: "example-sno"
 spec:
-  baseDomain: "example.com"
+  baseDomain: "calligan.name"
   pullSecretRef:
     name: "assisted-deployment-pull-secret"
-  clusterImageSetNameRef: "openshift-4.10"
-  sshPublicKey: "ssh-rsa AAAA..."
+  clusterImageSetNameRef: "openshift-4.11"
+  sshPublicKey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCuZJde1Y4zxIjaq6CXxM+zFTWNF2z3LMnxIUAGtU7InyMPEmdstTNBXQ5e27MbZjiLkL7pxYl/LFMOs7UARJ5/GWG4ijSD35wEwohsDDGoTeSTf/j5Dsaz3Wl5NDEH4jRUvxU5TOtTgNBx/aBIMPw/GWKAKEwxKOMGU0mLA4v9e06oX1PbhX9Y/WQ/6+fNmX/wSX0UlIQ1R3DakW/ocH1HI3x1rWWdBzDa/8DPYMSMy5hxr4XpKYqzn9+5uPfozfejcfEAdqV5yCQOnP1XO55PWt4r7uIkqc3a9wCskwbW81nGsYKb6n8c/MaSu6S9UUxM+nx+/GRB/BzpxFpYzdWsx0/J2LWqGJ16lvjLdWwOliBvfKSxxbwP8tGVK5nWSAHAQGLXnvK+/uP9AjhKQeCahn859mq4bLfoWl6Q/0pkUA5XRJG/M/59djrUXoqBDMFguFE80JQqcrgDvGbpkZnAHrm+d4Am6ZkPri/R0V/alsdScWyeG2GBv52lENhz220= ocpuser@bastion"
   clusters:
-  - clusterName: "example-sno"
+  - clusterName: "example"
     networkType: "OVNKubernetes"
     clusterLabels:
-      # These example cluster labels correspond to the bindingRules in the PolicyGenTemplate examples in ../policygentemplates:
-      # ../policygentemplates/common-ranGen.yaml will apply to all clusters with 'common: true'
-      common: true
-      # ../policygentemplates/group-du-sno-ranGen.yaml will apply to all clusters with 'group-du-sno: ""'
-      group-du-sno: ""
-      # ../policygentemplates/example-sno-site.yaml will apply to all clusters with 'sites: "example-sno"'
-      # Normally this should match or contain the cluster name so it only applies to a single cluster
-      sites : "example-sno"
+      vendor: Openshift
     clusterNetwork:
-      - cidr: 1001:1::/48
-        hostPrefix: 64
+      - cidr: 10.128.0.0/14
+        hostPrefix: 23
     machineNetwork:
-      - cidr: 1111:2222:3333:4444::/64
+      - cidr: 192.168.150.0/24
     serviceNetwork:
-      - 1001:2::/112
-    additionalNTPSources:
-      - 1111:2222:3333:4444::2
-    # Optionally; This can be used to override the KlusterletAddonConfig that is created for this cluster:
+      - 172.30.0.0/16
     #crTemplates:
     #  KlusterletAddonConfig: "KlusterletAddonConfigOverride.yaml"
     nodes:
-      - hostName: "example-node1.example.com"
+      - hostName: "example-sno"
         role: "master"
-        # Optionally; This can be used to configure desired BIOS setting on a host:
-        #biosConfigRef:
-        #  filePath: "example-hw.profile"
-        bmcAddress: "idrac-virtualmedia+https://[1111:2222:3333:4444::bbbb:1]/redfish/v1/Systems/System.Embedded.1"
+        bmcAddress: redfish-virtualmedia+http://198.102.28.26:8000/redfish/v1/Systems/88158323-03ff-44c6-a28a-4d9ab894fc6f
         bmcCredentialsName:
-          name: "example-node1-bmh-secret"
-        bootMACAddress: "AA:BB:CC:DD:EE:11"
-        # Use UEFISecureBoot to enable secure boot
+          name: "bmh-secret"
+        bootMACAddress: "52:54:00:9a:d2:5b"
         bootMode: "UEFI"
-        rootDeviceHints:
-          wwn: "0x11111000000asd123"
-        # example of diskPartition below is used for image registry (check ImageRegistry.md for more details), but it's not limited to this use case
-#        diskPartition:
-#          - device: /dev/disk/by-id/wwn-0x11111000000asd123 # match rootDeviceHints
-#            partitions:
-#              - mount_point: /var/imageregistry
-#                size: 102500
-#                start: 344844
-        cpuset: "0-1,52-53"
         nodeNetwork:
           interfaces:
-            - name: eno1
-              macAddress: "AA:BB:CC:DD:EE:11"
+            - name: enp1s0
+              macAddress: "52:54:00:9a:d2:5b"
           config:
             interfaces:
-              - name: eno1
+              - name: enp1s0
                 type: ethernet
                 state: up
-                macAddress: "AA:BB:CC:DD:EE:11"
+                macAddress: "52:54:00:9a:d2:5b"
                 ipv4:
-                  enabled: false
-                ipv6:
-                  enabled: true
                   address:
-                  # For SNO sites with static IP addresses, the node-specific,
-                  # API and Ingress IPs should all be the same and configured on
-                  # the interface
-                  - ip: 1111:2222:3333:4444::aaaa:1
-                    prefix-length: 64
+                  - ip: 192.168.150.3
+                    prefix-length: 24
+                dhcp: false
+                enabled: true
             dns-resolver:
               config:
                 search:
-                - example.com
+                - calligan.name
                 server:
-                - 1111:2222:3333:4444::2
+                - 192.168.150.2
             routes:
               config:
-              - destination: ::/0
-                next-hop-interface: eno1
-                next-hop-address: 1111:2222:3333:4444::1
+              - destination: 0.0.0.0/0
+                next-hop-interface: enp1s0
+                next-hop-address: 192.168.150.1
                 table-id: 254
