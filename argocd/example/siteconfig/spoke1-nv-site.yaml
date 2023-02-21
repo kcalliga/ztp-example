@@ -47,6 +47,8 @@ spec:
                     prefix-length: 29
                 dhcp: false
                 enabled: true
+                auto-gateway: true
+                auto-routes: true
             dns-resolver:
               config:
                 search:
