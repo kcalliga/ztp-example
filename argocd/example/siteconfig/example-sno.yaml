@@ -48,5 +48,5 @@ spec:
                 type: ethernet
                 state: up
                 macAddress: "52:54:00:2e:78:eb"
-                dhcp: false
+                dhcp: true
                 enabled: true
