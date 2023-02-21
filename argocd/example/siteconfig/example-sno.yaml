@@ -7,7 +7,7 @@ spec:
   baseDomain: "calligan.name"
   pullSecretRef:
     name: "assisted-deployment-pull-secret"
-  clusterImageSetNameRef: "openshift-4.11"
+  clusterImageSetNameRef: "img4.11.26-x86-64-appsub"
   sshPublicKey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDhfg1Bi7QhPBiYXTwP8xLuzeV9Do0oiGfUziyuJqIGt++lMNNFiOFP5TW4yQxM15juFRJcaiTBa3d1M/P/rCQGIfuJVrKyv999lOL3Q3l7tCia7E0pVFs0gd3DYgPshv2TNNa1VP9sUNUDBS90rlvCzzOmFzkLvfFYd3Tr2O38lnaGu6eNpFJt7Sq1cN0gWhSV/yVqE6xAvrivMBc9L0t+g2Os7bV2gwexuCisYGhfOY/yGwtyLZg6xl9nSRnRXHrjWELTGPaOhmJkGDetQ/MbcDr3skbdQc3uz0mg7WWy3isfgIbTajfJwjiO3+Tp614GFhIJiYPTjilJbV6nco4H keith@bd-hop.calligan.internal"
   clusters:
   - clusterName: "example-sno"
