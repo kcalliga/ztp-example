@@ -8,7 +8,7 @@ spec:
   pullSecretRef:
     name: "assisted-deployment-pull-secret"
   clusterImageSetNameRef: "openshift-4.11"
-  sshPublicKey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCuZJde1Y4zxIjaq6CXxM+zFTWNF2z3LMnxIUAGtU7InyMPEmdstTNBXQ5e27MbZjiLkL7pxYl/LFMOs7UARJ5/GWG4ijSD35wEwohsDDGoTeSTf/j5Dsaz3Wl5NDEH4jRUvxU5TOtTgNBx/aBIMPw/GWKAKEwxKOMGU0mLA4v9e06oX1PbhX9Y/WQ/6+fNmX/wSX0UlIQ1R3DakW/ocH1HI3x1rWWdBzDa/8DPYMSMy5hxr4XpKYqzn9+5uPfozfejcfEAdqV5yCQOnP1XO55PWt4r7uIkqc3a9wCskwbW81nGsYKb6n8c/MaSu6S9UUxM+nx+/GRB/BzpxFpYzdWsx0/J2LWqGJ16lvjLdWwOliBvfKSxxbwP8tGVK5nWSAHAQGLXnvK+/uP9AjhKQeCahn859mq4bLfoWl6Q/0pkUA5XRJG/M/59djrUXoqBDMFguFE80JQqcrgDvGbpkZnAHrm+d4Am6ZkPri/R0V/alsdScWyeG2GBv52lENhz220= ocpuser@bastion"
+  sshPublicKey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDhfg1Bi7QhPBiYXTwP8xLuzeV9Do0oiGfUziyuJqIGt++lMNNFiOFP5TW4yQxM15juFRJcaiTBa3d1M/P/rCQGIfuJVrKyv999lOL3Q3l7tCia7E0pVFs0gd3DYgPshv2TNNa1VP9sUNUDBS90rlvCzzOmFzkLvfFYd3Tr2O38lnaGu6eNpFJt7Sq1cN0gWhSV/yVqE6xAvrivMBc9L0t+g2Os7bV2gwexuCisYGhfOY/yGwtyLZg6xl9nSRnRXHrjWELTGPaOhmJkGDetQ/MbcDr3skbdQc3uz0mg7WWy3isfgIbTajfJwjiO3+Tp614GFhIJiYPTjilJbV6nco4H keith@bd-hop.calligan.internal"
   clusters:
   - clusterName: "example-sno"
     networkType: "OVNKubernetes"
@@ -33,21 +33,21 @@ spec:
     nodes:
       - hostName: "example-sno"
         role: "master"
-        bmcAddress: redfish-virtualmedia+http://198.102.28.26:8000/redfish/v1/Systems/88158323-03ff-44c6-a28a-4d9ab894fc6f
+        bmcAddress: redfish-virtualmedia+http://69.253.109.122:8088/redfish/v1/Systems/00afd56e-9042-462a-948c-644f2289ed6a
         bmcCredentialsName:
           name: "bmh-secret"
-        bootMACAddress: "52:54:00:9a:d2:5b"
+        bootMACAddress: "52:54:82:5e:1c"
         bootMode: "UEFI"
         nodeNetwork:
           interfaces:
             - name: enp1s0
-              macAddress: "52:54:00:9a:d2:5b"
+              macAddress: "52:54:82:5e:1c"
           config:
             interfaces:
               - name: enp1s0
                 type: ethernet
                 state: up
-                macAddress: "52:54:00:9a:d2:5b"
+                macAddress: "52:54:82:5e:1c"
                 ipv4:
                   address:
                   - ip: 192.168.150.3
