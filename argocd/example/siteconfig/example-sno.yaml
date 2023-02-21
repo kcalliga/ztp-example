@@ -33,20 +33,20 @@ spec:
     nodes:
       - hostName: "example-sno"
         role: "master"
-        bmcAddress: redfish-virtualmedia+http://69.253.109.122:8088/redfish/v1/Systems/3adea4e9-2e73-4542-8574-5f2677a00869
+        bmcAddress: redfish-virtualmedia+http://69.253.109.122:8088/redfish/v1/Systems/3cdf3bdf-7cc5-4efd-9ec3-636898c02953
         bmcCredentialsName:
           name: "bmh-secret"
-        bootMACAddress: "52:54:00:2e:78:eb"
+        bootMACAddress: "52:54:00:ea:b7:c1"
         bootMode: "UEFI"
         nodeNetwork:
           interfaces:
             - name: enp1s0
-              macAddress: "52:54:00:2e:78:eb"
+              macAddress: "52:54:00:ea:b7:c1"
           config:
             interfaces:
               - name: enp1s0
                 type: ethernet
                 state: up
-                macAddress: "52:54:00:2e:78:eb"
+                macAddress: "52:54:00:ea:b7:c1"
                 dhcp: true
                 enabled: true
