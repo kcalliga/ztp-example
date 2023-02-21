@@ -36,18 +36,18 @@ spec:
         bmcAddress: redfish-virtualmedia+http://69.253.109.122:8088/redfish/v1/Systems/00afd56e-9042-462a-948c-644f2289ed6a
         bmcCredentialsName:
           name: "bmh-secret"
-        bootMACAddress: "52:54:82:5e:1c"
+        bootMACAddress: "52:54:00:82:5e:1c"
         bootMode: "UEFI"
         nodeNetwork:
           interfaces:
             - name: enp1s0
-              macAddress: "52:54:82:5e:1c"
+              macAddress: "52:54:00:82:5e:1c"
           config:
             interfaces:
               - name: enp1s0
                 type: ethernet
                 state: up
-                macAddress: "52:54:82:5e:1c"
+                macAddress: "52:54:00:82:5e:1c"
                 ipv4:
                   address:
                   - ip: 192.168.150.3
